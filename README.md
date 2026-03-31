@@ -1,17 +1,36 @@
-# Quartz v4
+# Digital Garden
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+My personal digital garden — a public collection of technical notes, project write-ups, and learnings as a software engineer.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+Built with [Quartz](https://quartz.jzhao.xyz/) and powered by an [Obsidian](https://obsidian.md/) vault.
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## What's here
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+- **Project write-ups** — architecture decisions, learnings, and code walkthroughs
+- **Technical notes** — Go, TypeScript, AWS, Kubernetes, Docker, IaC
+- **Book & lecture summaries** — distilled insights from what I'm reading and studying
 
-## Sponsors
+## How it works
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+Notes live in a private Obsidian vault. A sync script selects only notes marked with `stage: public` and copies them into Quartz's content directory. On push, GitHub Actions builds and deploys the site.
+
+```
+Obsidian vault (private) → sync-content.sh → Quartz build → GitHub Pages
+```
+
+## Local development
+
+```bash
+# Install dependencies
+npm ci
+
+# Sync public notes from Obsidian vault
+./sync-content.sh
+
+# Preview locally
+npx quartz build --serve
+```
+
+## License
+
+Content is mine. Quartz is licensed under the [MIT License](./LICENSE.txt).
